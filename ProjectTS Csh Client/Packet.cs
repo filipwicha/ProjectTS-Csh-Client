@@ -24,13 +24,9 @@ namespace ProjectTS_Csh_Client
 
         enum Status
         {
-            //Wszystko jest ok
             everything_ok = 0b00,
-	        // Błąd dzielenia przez zero
 	        division_by_0 = 0b01,
-	        // Wynik wykracza poza zakres, OVERFLOW
 	        overrange = 0b10,
-	        // Nieokreślony status jeszcze
 	        something1 = 0b11
         };
 
