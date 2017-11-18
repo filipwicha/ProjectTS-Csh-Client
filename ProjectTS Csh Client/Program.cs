@@ -6,15 +6,17 @@ using System.IO;
 using System.Net;
 using System.Text;
 using System.Net.Sockets;
- 
+using System.Collections;
+using System.Linq;
+
 //REMEMBER TO WRITE AN IP ADRESS DOWN THERE 
 
-public class clnt
-{
+public class client
+{   
 
     public static void Main()
     {
-
+        
         try
         {
             TcpClient tcpclnt = new TcpClient();
@@ -26,14 +28,17 @@ public class clnt
             Console.WriteLine("Connected");
             Console.Write("Enter the string to be transmitted : ");
 
-            String str = Console.ReadLine();
+            //int in c# is always 32bit
+            String operation = Console.ReadLine();
             Stream stm = tcpclnt.GetStream();
 
+            string num1 = Console.ReadLine();
+            byte[] firstNum = Encoding.ASCII.GetBytes(num1);
+            
             ASCIIEncoding asen = new ASCIIEncoding();
-            byte[] ba = asen.GetBytes(str);
             Console.WriteLine("Transmitting.....");
 
-            stm.Write(ba, 0, ba.Length);
+            stm.Write(firstNum, 0, firstNum.Length);
 
             byte[] bb = new byte[100];
             int k = stm.Read(bb, 0, 100);
@@ -48,6 +53,7 @@ public class clnt
         {
             Console.WriteLine("Error..... " + e.StackTrace);
         }
+        String wait = Console.ReadLine();
     }
 
 }
