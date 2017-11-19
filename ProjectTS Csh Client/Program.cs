@@ -1,5 +1,4 @@
-﻿
-/*       Client Program      */
+﻿using ProjectTS_Csh_Client;
 
 using System;
 using System.IO;
@@ -9,7 +8,6 @@ using System.Net.Sockets;
 using System.Collections;
 using System.Linq;
 
-//REMEMBER TO WRITE AN IP ADRESS DOWN THERE 
 
 public class client
 {   
@@ -26,22 +24,18 @@ public class client
             // use the ipaddress as in the server program
 
             Console.WriteLine("Connected");
-            Console.Write("Enter the string to be transmitted : ");
-
-            //int in c# is always 32bit
-            String operation = Console.ReadLine();
-            Stream stm = tcpclnt.GetStream();
-
-            string num1 = Console.ReadLine();
-            byte[] firstNum = Encoding.ASCII.GetBytes(num1);
             
-            ASCIIEncoding asen = new ASCIIEncoding();
+            Stream stm = tcpclnt.GetStream();
+            
+            //Create the Packet variable,
+            //there should be a code that serializes the Packet 
+            
             Console.WriteLine("Transmitting.....");
+            stm.Write(/* data, 0, data.Length */);
 
-            stm.Write(firstNum, 0, firstNum.Length);
-
-            byte[] bb = new byte[100];
-            int k = stm.Read(bb, 0, 100);
+            //there should be a conversion from BitArray to byte[]
+            byte[] bb = new byte[/* packet1.Length */];
+            int k = stm.Read(bb, 0, /* packet1.Length */);
 
             for (int i = 0; i < k; i++)
                 Console.Write(Convert.ToChar(bb[i]));
@@ -57,5 +51,3 @@ public class client
     }
 
 }
-
-//
